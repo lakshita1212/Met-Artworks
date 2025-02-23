@@ -1,3 +1,8 @@
+//Lakshita Madhavan 2/22/25
+//IT302 452
+//Phase 2 Assignment
+//lm66@njit.edu
+
 import app from './server.js'
 import mongodb from "mongodb"
 import dotenv from "dotenv"
