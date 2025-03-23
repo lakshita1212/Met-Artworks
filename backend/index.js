@@ -7,6 +7,8 @@ import app from './server.js'
 import mongodb from "mongodb"
 import dotenv from "dotenv"
 import ArtworksDAO from './dao/artworksDAO.js'
+import ImpressionsDAO from './dao/impressionsDAO.js'
+
 
 
 async function main() {
@@ -20,6 +22,8 @@ async function main() {
   try {
     await client.connect()
     await ArtworksDAO.injectDB(client)
+    await ImpressionsDAO.injectDB(client)
+
 
     app.listen(port, () => {
         console.log('server is running on port:' + port);
