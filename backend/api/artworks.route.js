@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.route('/').get(ArtworksController.apiGetArtworks)
 router.route("/id/:id").get(ArtworksController.apiGetArtworkById)
-router.route("/impressions").get(ArtworksController.apiGetImpressions)
+router.route("/departments").get(ArtworksController.apiGetDepartments)
 
 router
     .route("/impression")

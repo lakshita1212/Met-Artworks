@@ -55,6 +55,18 @@ export default class ArtworksController {
             console.log(`api, ${e}`)
             res.status(500).json({error: e})
           }
-        }      
+        }    
+        
+        
+
+        static async apiGetDepartments(req, res, next) {
+          try {
+            let propertyTypes = await ArtworksDAO.getDepartments()
+            res.json(propertyTypes)
+          } catch(e) {
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+          }
+        }  
     }
     

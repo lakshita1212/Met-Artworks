@@ -3,6 +3,8 @@
 //Phase 2 Assignment
 //lm66@njit.edu
 let artworks
+import mongodb from "mongodb"
+const ObjectId = mongodb.ObjectId
 
 export default class ArtworksDAO {
   static async injectDB(conn) {
@@ -42,4 +44,39 @@ export default class ArtworksDAO {
    return { artworksList: [], totalNumArtworks: 0 }
  }
 }
+
+static async getArtworkById(id) {
+  try {
+    return await artworks.aggregate([
+      {
+        $match: {
+          _id: new ObjectId(id),
+        }
+      },
+      { $lookup:
+        {
+          from: 'impressions',
+          localField: '_id',
+          foreignField: 'artwork_id',
+          as: 'impressions'
+        }
+      }
+    ]).next()
+  }
+  catch(e) {
+    console.error(`something went wrong in getArtworkById: ${e}`)
+    throw e
+  }
+}
+static async getDepartments() { 
+  let departments = []
+  try {
+    departments = await artworks.distinct("department")
+    return departments
+  } catch(e) {
+    console.error(`unable to get departments, ${e}`)
+    return departments
+  }
+}
+
 }
