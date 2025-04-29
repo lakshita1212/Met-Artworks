@@ -1,11 +1,11 @@
 /*
 Lakshita Madhavan
 IT302 - 452 - Advanced internet applications
-4/14/2025
-Phase 4 Read Node.js Data
+4/26/2025
+Phase 5 Read CUD Node.js Data
 lm66@njit.edu
 */
-import React, { useState } from "react";
+import React, { useState ,useCallback} from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -28,18 +28,21 @@ function App() {
   async function logout() {
     setUser(null);
   }
+  const loginSetter = useCallback(user => {
+    setUser(user);
+  }, [setUser]);
 
   return (
    <div className="App">
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand>Artwork Reviews</Navbar.Brand>
+        <Navbar.Brand>Artwork Impressions</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link as={NavLink} to={"/lm66_artworks"}>
               Artworks
             </Nav.Link>
-            <Nav.Link as={NavLink} to={user ? "" : "/login"}>
+            <Nav.Link as={NavLink} to={user ? "" : "/lm66_login"}>
               {user ? "Logout User" : "Login"}
             </Nav.Link>
           </Nav>
@@ -57,7 +60,7 @@ function App() {
     element={<AddImpression user={user} />}
         ></Route>
 
-  <Route path="/login" element={<Login login={login} />}></Route>
+  <Route path="/lm66_login" element={<Login user={user} loginSetter={loginSetter}/>}></Route>
       </Routes>
 
 
