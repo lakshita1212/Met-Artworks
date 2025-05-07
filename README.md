@@ -1,2 +1,2 @@
-# IT302-lm66-Project
+# IT302-MERN Stack APP
 IT 302 Project - Spring 2025
